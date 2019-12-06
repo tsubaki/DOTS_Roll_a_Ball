@@ -11,7 +11,6 @@ public class CubeRotationSystem : JobComponentSystem {
         var axis = quaternion.RotateY (5 * Time.DeltaTime);
         inputDeps = Entities
             .WithAll<Cube> ()
-            .WithName ("Rotation")
             .ForEach ((ref Rotation rot) => {
                 rot.Value = math.mul (rot.Value, axis);
             }).Schedule (inputDeps);

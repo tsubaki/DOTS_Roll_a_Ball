@@ -3,7 +3,6 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-
 // CubeとBallの接触判定を行う。接触時に `RequestScoreUp` を生成する。
 // 接触したCubeは破棄される。
 public class HitCheckSystem : JobComponentSystem {
@@ -22,7 +21,6 @@ public class HitCheckSystem : JobComponentSystem {
 
         inputDeps = Entities
             .WithAll<Cube> ()
-            .WithName ("HitCheck")
             .ForEach ((Entity entity, int entityInQueryIndex, in LocalToWorld pos) => {
                 if (math.distance (playerPos, pos.Position) < 1) {
                     commadnBuffer.DestroyEntity (entityInQueryIndex, entity);

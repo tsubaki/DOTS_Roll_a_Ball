@@ -18,6 +18,7 @@ public class FollowCameraSystem : JobComponentSystem {
             }).Schedule (inputDeps);
 
         inputDeps = Entities
+            .WithReadOnly(positions)
             .ForEach ((ref Translation pos, in CameraTag camera) => {
                 pos.Value = positions[0] + camera.offset;
             }).Schedule (inputDeps);

@@ -1,4 +1,3 @@
-using TMPro;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -16,7 +15,6 @@ public class MoveBallSystem : JobComponentSystem {
 
         inputDeps = Entities
             .WithAll<Ball> ()
-            .WithName ("Move")
             .ForEach ((ref PhysicsVelocity physicsVelocity, in PhysicsMass physicsMass, in Force force) => {
                 physicsVelocity.Linear += (physicsMass.InverseMass * force.magnitude * DeltaTime) * duration;
             }).Schedule (inputDeps);
