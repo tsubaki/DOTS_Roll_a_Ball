@@ -1,11 +1,7 @@
-﻿using Unity.Burst;
-using Unity.Collections;
-using Unity.Entities;
+﻿using Unity.Entities;
 using Unity.Jobs;
-using Unity.Mathematics;
-using Unity.Transforms;
-using static Unity.Mathematics.math;
 
+/// GameManagerが進行の管理を把握するための情報を収集する
 [UpdateInGroup(typeof(InitializationSystemGroup))]
 public class GameStatusSystem : JobComponentSystem
 {
@@ -19,8 +15,7 @@ public class GameStatusSystem : JobComponentSystem
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
         var count = query.CalculateEntityCount();
-
-        Entities.ForEach((ref GameState state)=> state.ItemCount = count).Run();
+        inputDeps = Entities.ForEach((ref GameState state)=> state.ItemCount = count).Schedule(inputDeps);
 
         return inputDeps;
     }

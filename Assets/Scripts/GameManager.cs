@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         label.enabled = false;
 
-
         yield return new WaitWhile((()=>manager.GetComponentData<GameState>(gamestate).ItemCount != 0));
 
         label.enabled = true;
