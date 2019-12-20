@@ -27,10 +27,19 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         label.enabled = false;
 
-        yield return new WaitWhile((()=>manager.GetComponentData<GameState>(gamestate).ItemCount != 0));
+        GameState state = new GameState();
+        yield return new WaitWhile((()=>{
+            state = manager.GetComponentData<GameState>(gamestate);
+            return (state.ItemCount != 0 && state.timer > 0);
+        }));
 
         label.enabled = true;
-        label.text = "WIN";
+
+        if( state.timer > 0)
+            label.text = "WIN";
+        else
+            label.text = "LOSE";
+            
         manager.DestroyEntity(controlable);
     }
 }

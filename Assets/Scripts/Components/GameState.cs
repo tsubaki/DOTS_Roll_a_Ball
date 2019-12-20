@@ -5,4 +5,6 @@ using UnityEngine;
 public struct GameState : IComponentData
 {
     public int ItemCount;
+
+    public float timer;
 }

@@ -5,17 +5,23 @@ using Unity.Jobs;
 [UpdateInGroup(typeof(InitializationSystemGroup))]
 public class GameStatusSystem : JobComponentSystem
 {
-    EntityQuery query;
+    EntityQuery query, timerQuery;
 
     protected override void OnCreate()
     {
         query = GetEntityQuery(typeof(Cube));
+        timerQuery = GetEntityQuery(ComponentType.ReadOnly<Timer>());
     }
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
         var count = query.CalculateEntityCount();
-        inputDeps = Entities.ForEach((ref GameState state)=> state.ItemCount = count).Schedule(inputDeps);
+        var timer = timerQuery.GetSingleton<Timer>().Value;
+        inputDeps = Entities
+            .ForEach((ref GameState state)=>{
+                state.ItemCount = count;
+                state.timer = timer;
+            }).Schedule(inputDeps);
 
         return inputDeps;
     }
