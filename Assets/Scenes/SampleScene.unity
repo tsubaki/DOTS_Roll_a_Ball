@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44590366, g: 0.4956441, b: 0.57438356, a: 1}
+  m_IndirectSpecularColor: {r: 0.44590408, g: 0.49564457, b: 0.57438403, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SceneAsset: {fileID: 102900000, guid: db32309edd2574556813f0481f9e995e, type: 3}
   _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  AutoLoadScene: 1
+  AutoLoadScene: 0
   _SceneGUID:
     Value:
       x: 3909297085
@@ -1181,6 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 1555797866}
+  subScene: {fileID: 833083812}
 --- !u!4 &2056518658
 Transform:
   m_ObjectHideFlags: 0
