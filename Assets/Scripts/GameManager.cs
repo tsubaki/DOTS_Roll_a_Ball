@@ -13,6 +13,14 @@ public class GameManager : MonoBehaviour
     public int ItemCount { get; set; }
 
     Entity controlable;
+    EntityManager manager;
+    SceneSystem sceneSystem;
+
+    void Awake()
+    {
+        manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        sceneSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<SceneSystem>();
+    }
 
     IEnumerator Start()
     {
@@ -29,12 +37,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator InitGame()
     {
-        var loadParams = new SceneSystem.LoadParameters { };
-        var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        var sceneSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<SceneSystem>();
-        var sceneEntity = sceneSystem.LoadSceneAsync(subScene.SceneGUID, loadParams);
+        sceneSystem.LoadSceneAsync(subScene.SceneGUID, new SceneSystem.LoadParameters { });
 
-        sceneSystem.EntityManager.AddComponentObject(sceneEntity, this);
         label.enabled = true;
 
         for (int i = 3; i > 0; i--)
@@ -61,7 +65,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameSet()
     {
-        var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
         label.enabled = true;
 
         if (timer > 0)
@@ -73,7 +76,8 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
 
-        var sceneSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystem<SceneSystem>();
-        sceneSystem.UnloadScene(subScene.SceneGUID, SceneSystem.UnloadParameters.DestroySceneProxyEntity | SceneSystem.UnloadParameters.DestroySectionProxyEntities);
+        sceneSystem.UnloadScene(
+            subScene.SceneGUID, 
+            SceneSystem.UnloadParameters.DestroySceneProxyEntity | SceneSystem.UnloadParameters.DestroySectionProxyEntities);
     }
 }
