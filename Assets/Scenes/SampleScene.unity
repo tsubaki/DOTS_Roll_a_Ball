@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44590408, g: 0.49564457, b: 0.57438403, a: 1}
+  m_IndirectSpecularColor: {r: 0.44590366, g: 0.4956441, b: 0.57438356, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 229667257}
   - component: {fileID: 229667258}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: TimerLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,10 +401,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 229667251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ceb4bc7fd2b841ad922cb30063c2fb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 024d80201e2b74d518f42bbeb97f18fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 30
+  Value: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,8 +979,8 @@ GameObject:
   - component: {fileID: 1990296185}
   - component: {fileID: 1990296189}
   - component: {fileID: 1990296188}
-  - component: {fileID: 1990296187}
   - component: {fileID: 1990296186}
+  - component: {fileID: 1990296187}
   m_Layer: 5
   m_Name: ScoreLabel
   m_TagString: Untagged
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1990296184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f242a4b1e5e90495781fe881fc79e710, type: 3}
+  m_Script: {fileID: 11500000, guid: 024d80201e2b74d518f42bbeb97f18fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
@@ -1161,6 +1161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2056518658}
   - component: {fileID: 2056518657}
+  - component: {fileID: 2056518659}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -1196,3 +1197,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2056518659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056518656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 1

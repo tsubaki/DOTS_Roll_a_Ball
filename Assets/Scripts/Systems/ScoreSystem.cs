@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using static Unity.Entities.ComponentType;
@@ -15,19 +16,23 @@ public class ScoreSystem : JobComponentSystem {
 
     protected override JobHandle OnUpdate (JobHandle inputDeps) {
         var requestCount = scoreUpQuery.CalculateEntityCount ();
+        var currentScore = new NativeArray<int>(1, Allocator.Temp);
 
         Entities
             .ForEach((ref Score score)=>{
                 score.Value += requestCount;
+                currentScore[0] = score.Value;
             }).Run();
 
         Entities
             .WithoutBurst ()
-            .ForEach ((TextMeshProUGUI label, in Score score) => {
-                label.text = score.Value.ToString ("00");
+            .WithSharedComponentFilter(new UIType{ Value = UIType.Type.SCORE})
+            .ForEach ((TextMeshProUGUI label) => {
+                label.text = currentScore[0].ToString ("00");
             }).Run ();
 
         EntityManager.DestroyEntity (scoreUpQuery);
+        currentScore.Dispose();
 
         return inputDeps;
     }
