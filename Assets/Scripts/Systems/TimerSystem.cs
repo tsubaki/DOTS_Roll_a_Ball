@@ -1,8 +1,6 @@
-﻿using System;
-using Unity.Collections;
+﻿using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
-using Unity.Mathematics;
 
 public class TimerSystem : JobComponentSystem
 {

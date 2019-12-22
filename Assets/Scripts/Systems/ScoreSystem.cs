@@ -8,7 +8,7 @@ using static Unity.Entities.ComponentType;
 // RequestScoreUp があるときのみ動作
 public class ScoreSystem : JobComponentSystem
 {
-    EntityQuery scoreUpQuery;
+    private EntityQuery scoreUpQuery;
 
     protected override void OnCreate()
     {

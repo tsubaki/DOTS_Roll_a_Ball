@@ -6,8 +6,8 @@ using Unity.Scenes;
 //ゲームの進行管理を行う
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] TMPro.TextMeshProUGUI label;
-    [SerializeField] SubScene subScene;
+    [SerializeField] TMPro.TextMeshProUGUI label = null;
+    [SerializeField] SubScene subScene = null;
 
     public float timer { get; set; }
     public int ItemCount { get; set; }

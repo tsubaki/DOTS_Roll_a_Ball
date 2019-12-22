@@ -6,7 +6,7 @@ using static Unity.Entities.ComponentType;
 [UpdateInGroup(typeof(InitializationSystemGroup))]
 public class GameStatusSystem : JobComponentSystem
 {
-    EntityQuery query, timerQuery;
+    private EntityQuery query, timerQuery;
 
     protected override void OnCreate()
     {
