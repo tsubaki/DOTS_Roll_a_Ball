@@ -19,15 +19,17 @@ public class TimerSystem : JobComponentSystem
 
         Entities
             .WithoutBurst()
-            .ForEach((ref Timer timer)=>{
+            .ForEach((ref Timer timer) =>
+            {
                 timer.Value -= Time.DeltaTime;
                 timerValue[0] = timer.Value;
             }).Run();
 
         Entities
             .WithoutBurst()
-            .WithSharedComponentFilter(new UIType{ Value = UIType.Type.Timer})
-            .ForEach((TMPro.TextMeshPro label)=>{
+            .WithSharedComponentFilter(new UIType { Value = UIType.Type.Timer })
+            .ForEach((TMPro.TextMeshPro label) =>
+            {
                 label.text = timerValue[0].ToString("000.00");
             }).Run();
 

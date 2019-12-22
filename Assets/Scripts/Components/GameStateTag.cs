@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Entities;
-using UnityEngine;
+﻿using Unity.Entities;
 
 [GenerateAuthoringComponent]
 public struct GameStateTag : IComponentData{}

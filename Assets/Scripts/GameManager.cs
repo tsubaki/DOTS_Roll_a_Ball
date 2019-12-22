@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI label;
     [SerializeField] SubScene subScene;
 
-    public float timer {get; set;}
-    public int ItemCount{get; set;}
+    public float timer { get; set; }
+    public int ItemCount { get; set; }
 
     Entity controlable;
 
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator InitGame()
     {
-        var loadParams = new SceneSystem.LoadParameters {};
+        var loadParams = new SceneSystem.LoadParameters { };
         var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
         var sceneSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<SceneSystem>();
         var sceneEntity = sceneSystem.LoadSceneAsync(subScene.SceneGUID, loadParams);
@@ -68,10 +68,10 @@ public class GameManager : MonoBehaviour
             label.text = "WIN";
         else
             label.text = "LOSE";
-            
+
         manager.DestroyEntity(controlable);
 
-        yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
 
         var sceneSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystem<SceneSystem>();
         sceneSystem.UnloadScene(subScene.SceneGUID, SceneSystem.UnloadParameters.DestroySceneProxyEntity | SceneSystem.UnloadParameters.DestroySectionProxyEntities);

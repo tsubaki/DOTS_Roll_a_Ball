@@ -10,7 +10,7 @@ public class UITypeAuthoring : MonoBehaviour, IConvertGameObjectToEntity
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        dstManager.AddSharedComponentData(entity, new UIType{ Value = Value });        
+        dstManager.AddSharedComponentData(entity, new UIType { Value = Value });
     }
 }
 
@@ -19,7 +19,8 @@ public struct UIType : ISharedComponentData
 {
     public Type Value;
 
-    public enum Type{
+    public enum Type
+    {
         SCORE = 0,
         Timer = 1
     }

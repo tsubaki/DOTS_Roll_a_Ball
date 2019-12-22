@@ -20,13 +20,15 @@ public class GameStatusSystem : JobComponentSystem
 
         Entities
             .WithoutBurst()
-            .ForEach((ref Timer timer)=>{
+            .ForEach((ref Timer timer) =>
+            {
                 timerValue = timer.Value;
             }).Run();
 
         Entities
             .WithoutBurst()
-            .ForEach((GameManager manager)=>{
+            .ForEach((GameManager manager) =>
+            {
                 manager.ItemCount = count;
                 manager.timer = timerValue;
             }).Run();
