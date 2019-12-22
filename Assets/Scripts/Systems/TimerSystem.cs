@@ -15,19 +15,23 @@ public class TimerSystem : JobComponentSystem
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
+        var timerValue = new NativeArray<float>(1, Allocator.Temp);
+
         Entities
             .WithoutBurst()
             .ForEach((ref Timer timer)=>{
                 timer.Value -= Time.DeltaTime;
+                timerValue[0] = timer.Value;
             }).Run();
 
         Entities
             .WithoutBurst()
-            .ForEach((TMPro.TextMeshPro label, ref Timer timer)=>{
-                label.text = timer.Value.ToString("000.00");
+            .WithSharedComponentFilter(new UIType{ Value = UIType.Type.Timer})
+            .ForEach((TMPro.TextMeshPro label)=>{
+                label.text = timerValue[0].ToString("000.00");
             }).Run();
 
-
+        timerValue.Dispose();
         return inputDeps;
     }
 }

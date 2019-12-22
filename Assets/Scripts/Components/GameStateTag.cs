@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
-public struct GameState : IComponentData
-{
-    public int ItemCount;
 
-    public float timer;
-}
+[GenerateAuthoringComponent]
+public struct GameStateTag : IComponentData{}
