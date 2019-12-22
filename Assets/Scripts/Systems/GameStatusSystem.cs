@@ -6,23 +6,29 @@ using static Unity.Entities.ComponentType;
 [UpdateInGroup(typeof(InitializationSystemGroup))]
 public class GameStatusSystem : JobComponentSystem
 {
-    EntityQuery query, timerQuery;
+    EntityQuery query;
 
     protected override void OnCreate()
     {
-        query = GetEntityQuery(typeof(Cube));
-        timerQuery = GetEntityQuery( ReadOnly<Timer>(), ReadOnly<GameStateTag>());
+        query = GetEntityQuery(ReadOnly<Cube>());
     }
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
         var count = query.CalculateEntityCount();
-        var timer = timerQuery.GetSingleton<Timer>().Value;
+        var timerValue = 10f;
+
+        Entities
+            .WithoutBurst()
+            .ForEach((ref Timer timer)=>{
+                timerValue = timer.Value;
+            }).Run();
+
         Entities
             .WithoutBurst()
             .ForEach((GameManager manager)=>{
                 manager.ItemCount = count;
-                manager.timer = timer;
+                manager.timer = timerValue;
             }).Run();
 
         return inputDeps;
